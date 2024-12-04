@@ -1,0 +1,18 @@
+zhortein_symfony_toolbox:
+  datatables:
+    css_mode: 'bootstrap'
+    items_per_page: 10
+    paginator: 'custom'
+    ux_icons: true
+    ux_icons_options:
+      icon_first: 'bi:chevron-double-left'
+      icon_previous: 'bi:chevron-left'
+      icon_next: 'bi:chevron-right'
+      icon_last: 'bi:chevron-double-right'
+      icon_search: 'bi:search'
+      icon_true: 'bi:check'
+      icon_false: 'bi:x'
+      icon_sort_neutral: 'mdi:sort'
+      icon_sort_asc: 'bi:sort-alpha-down'
+      icon_sort_desc: 'bi:sort-alpha-up'
+      icon_filter: 'mi:filter'

@@ -1,0 +1,2 @@
+zhortein_symfony_toolbox:
+  resource: '@ZhorteinSymfonyToolboxBundle/config/routes.yaml'
