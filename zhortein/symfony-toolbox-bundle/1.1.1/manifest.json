@@ -1,0 +1,10 @@
+{
+  "bundles": {
+    "Zhortein\\SymfonyToolboxBundle\\ZhorteinSymfonyToolboxBundle": [
+      "all"
+    ]
+  },
+  "copy-from-recipe": {
+    "config/": "%CONFIG_DIR%/"
+  }
+}
