@@ -1,0 +1,32 @@
+{
+  "bundles": {
+    "Zhortein\\SymfonyToolboxBundle\\ZhorteinSymfonyToolboxBundle": [
+      "all"
+    ]
+  },
+  "copy-from-recipe": {
+    "config/": "%CONFIG_DIR%/"
+  },
+  "dockerfile": [
+    "RUN apt-get update && apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev",
+    "RUN docker-php-ext-configure gd --with-freetype --with-jpeg",
+    "RUN install-php-extensions gd",
+    "RUN install-php-extensions xsl"
+  ],
+  "docker-compose": {
+    "docker-compose.override.yml": {
+      "services": [
+        "adminer:",
+        "  image: adminer:latest",
+        "  depends_on:",
+        "    - database",
+        "  environment:",
+        "    ADMINER_DEFAULT_SERVER: database",
+        "    ADMINER_DESIGN: pepa-linha-dark",
+        "  ports:",
+        "    - \"8080:8080\""
+      ],
+      "volumes": ["database_data:"]
+    }
+  }
+}
