@@ -1,0 +1,82 @@
+{
+    "manifests": {
+        "zhortein/symfony-toolbox-bundle": {
+            "manifest": {
+                "bundles": {
+                    "Zhortein\\SymfonyToolboxBundle\\ZhorteinSymfonyToolboxBundle": [
+                        "all"
+                    ]
+                },
+                "copy-from-recipe": {
+                    "config/": "%CONFIG_DIR%/"
+                },
+                "dockerfile": [
+                    "RUN apt-get update && apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev",
+                    "RUN docker-php-ext-configure gd --with-freetype --with-jpeg",
+                    "RUN install-php-extensions gd",
+                    "RUN install-php-extensions xsl"
+                ],
+                "docker-compose": {
+                    "docker-compose.override.yml": {
+                        "services": [
+                            "adminer:",
+                            "  image: adminer:latest",
+                            "  depends_on:",
+                            "    - database",
+                            "  environment:",
+                            "    ADMINER_DEFAULT_SERVER: database",
+                            "    ADMINER_DESIGN: pepa-linha-dark",
+                            "  ports:",
+                            "    - \"8080:8080\""
+                        ],
+                        "volumes": [
+                            "database_data:"
+                        ]
+                    }
+                }
+            },
+            "files": {
+                "config/packages/zhortein_symfony_toolbox.yaml": {
+                    "contents": [
+                        "zhortein_symfony_toolbox:",
+                        "  datatables:",
+                        "    css_mode: 'bootstrap'",
+                        "    items_per_page: 10",
+                        "    paginator: 'custom'",
+                        "    export:",
+                        "      enabled_by_default: true",
+                        "      export_csv: true",
+                        "      export_pdf: false",
+                        "      export_excel: true",
+                        "    ux_icons: true",
+                        "    ux_icons_options:",
+                        "      icon_first: 'bi:chevron-double-left'",
+                        "      icon_previous: 'bi:chevron-left'",
+                        "      icon_next: 'bi:chevron-right'",
+                        "      icon_last: 'bi:chevron-double-right'",
+                        "      icon_search: 'bi:search'",
+                        "      icon_true: 'bi:check'",
+                        "      icon_false: 'bi:x'",
+                        "      icon_sort_neutral: 'mdi:sort'",
+                        "      icon_sort_asc: 'bi:sort-alpha-down'",
+                        "      icon_sort_desc: 'bi:sort-alpha-up'",
+                        "      icon_filter: 'mi:filter'",
+                        "      icon_export_csv: 'bi:filetype-csv'",
+                        "      icon_export_pdf: 'bi:filetype-pdf'",
+                        "      icon_export_excel: 'bi:filetype-xlsx'",
+                        ""
+                    ],
+                    "executable": false
+                },
+                "config/routes/zhortein_symfony_toolbox.yaml": {
+                    "contents": [
+                        "zhortein_symfony_toolbox:",
+                        "  resource: '@ZhorteinSymfonyToolboxBundle/config/routes.yaml'"
+                    ],
+                    "executable": false
+                }
+            },
+            "ref": "12296fb949bf418203cc37989d6b09044cc64d5b"
+        }
+    }
+}
